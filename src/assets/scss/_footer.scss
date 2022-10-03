@@ -1,0 +1,122 @@
+footer {
+    margin-top: 60px;
+
+    .wrapper {
+        padding: 0 30px 15px 40px;
+    }
+    hr {
+        background-color: $grey;
+        height: 1px;
+        border: 0;
+    }
+    @media (max-width: 1500px) {
+        .wrapper {
+          padding: 0 30px 15px 30px;
+        }
+    }
+    @media (max-width: 1200px) {
+        .wrapper {
+          padding: 0 15px 15px 15px;
+        }
+    }
+}
+
+// animation footer
+$animation_time: 20;
+$delay_time: calc($animation-time / 2);
+$images: 8;
+$image_width: 190;
+$images_width: $image_width * $images;
+$images_width_d: $image_width * $images * 2;
+
+.animation {
+    overflow: hidden;
+    position: relative;
+    margin: 62px 0;
+
+    img {
+        display: block;
+    }
+}
+
+.scroll {
+    left: 0%;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-width: 100%;
+    animation: l1_animation #{$animation_time}s linear infinite;
+}
+.scroll1 {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-width: 100%;
+    animation: l2_animation #{$animation_time}s linear infinite;
+    
+    
+}
+.scroll div,
+.scroll1 div {
+    padding: 0 15px;
+    display: flex;
+    justify-content: center;
+}
+@keyframes l1_animation {
+    0%{left:0%;visibility:visible;}
+    100%{left:-100%;}
+}
+@keyframes l2_animation {
+    0%{left:100%;}
+    100%{left:0%;}
+}
+
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% / $images);
+    height: 100%;
+    background: #fff;
+    z-index: 20;
+    background: -moz-linear-gradient(left,  rgba(255,255,255,.8) 0%,  rgba(255,255,255,.8) 70%, transparent 100%);
+    background: -webkit-linear-gradient(left,  rgba(255,255,255,.8) 0%,rgba(255,255,255,.8) 70%,transparent 100%);
+    background: linear-gradient(to right,  rgba(255,255,255,.8) 0%,rgba(255,255,255,.8) 70%, transparent 100%);
+}
+.shadow_2 {
+    left: auto;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+@media (max-width: 1200px) {
+    .scroll,
+    .scroll1 {
+        width: auto;
+        min-width: #{$images_width}px;
+    }
+    .scroll div,
+    .scroll1 div {
+        width: #{$image_width}px;
+    }
+    @keyframes l1_animation {
+        0%{left:0px; visibility:visible;}
+        100%{left:-#{$images_width}px;}
+    }
+    @keyframes l2_animation {
+        0%{left:#{$images_width}px;}
+        100%{left:0;}
+    }
+}
+@media (max-width: 770px) {
+    .shadow,
+    .shadow_2 {
+        display: none;
+    }
+}
